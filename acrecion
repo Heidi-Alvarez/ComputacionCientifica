@@ -1,0 +1,31 @@
+#!/home/heidi/Astronomy/Planetarias/Programas
+
+
+import numpy as np
+import pylab as p
+
+
+t0=0.0; tf=1000; n=10; deltat=tf/n; h=3e11; f=1e-2; vtt=1e5; Z0=5.0*h; Omega=2e-7
+rho=3; rhogas=1e-9;
+
+for j in range(0,3):
+    if (j==0):
+        r=1e-6
+    if (j==1):
+        r=1e-5
+    if (j==2):
+        r=1e-4
+    V=(4*np.pi*r**3)/3
+    m=V*rho
+    for i in range(0,n+1): 
+        EZ=-(deltat*i*rho*r*Omega**2)/(rhogas*vtt)
+        Z=Z0*np.exp(EZ)
+        EM=(3*f*Z*Omega**2)/(4*vtt)
+        M=m*np.exp(EM)
+        Z0=Z
+        m=M
+        R=(3*M)/(4*np.pi*rho)
+        r=R**0.333
+        print M, r, R
+
+
