@@ -1,0 +1,46 @@
+#!/home/heidi/Astronomy/Celeste/Problemas
+
+
+import numpy as np
+
+
+Masa=[1e30,1e23,1e23,1e24,1e23,1e27,1e26,1e25,1e26]
+X=[2.1861e-3,9.1044e-2,-4.2089e-2,-8.6647e-1,-9.9703e-1,-5.4072,7.6962,6.2758,9.8316]
+Y=[4.6615e-3,2.9876e-1,5.8445e-1,4.7713e-1,1.3108,-6.5721e-1,-6.1478,-1.8543e1,-2.8535e1]
+Z=[-7.3566e-5,1.5791e-2,7.8300e-2,-6.7695e-5,5.1862e-2,1.2381e-1,-1.9882e-1,-1.5020e-1,3.6103e-1]
+Vx=[-1.9275e-3,-3.2569e-2,-1.6410e-2,-8.5073e-3,-1,0585e-2,8.1790e-4,3.1800e-3,3.6964e-3,2.9480e-3]
+Vy=[5.5514e-6,9.2099e-3,-1.2028e-2,-1.5177e-2,-73063e-3,-7.1413e-3,4.3465e-3,1.0784e-3,1.0405e-3]
+Vz=[5.0977e-8,3.7416e-3,7.8300e-4,-5.4280e-7,1.0715e-4,1.1288e-5,-2.0112e-4,-4.4028e-5,-8.9216e-5]
+
+n=9
+R=[0.0]*n
+V=[0.0]*n
+L=0.0
+
+for i in range (n):
+    x=X[i]
+    y=Y[i]
+    z=Z[i]
+    r=np.sqrt(x**2+y**2+z**2)
+    R[i]=r
+    vx=Vx[i]
+    vy=Vy[i]
+    vz=Vz[i]
+    v=np.sqrt(vx**2+vy**2+vz**2)
+    V[i]=v
+    M=Masa[i]
+    L+=M*r*v
+
+Sol=Masa[0]*R[0]*V[0]
+ps=(Sol*100.0)/L
+Jupiter=Masa[5]*R[5]*V[5]
+pj=(Jupiter*100.0)/L
+
+print "Momento angular total", L
+print "Momento del Sol", Sol
+print "Porcentaje del momento del Sol", ps
+print "Momento de Jupiter", Jupiter
+print "Porcentaje del momento de Jupiter", pj
+
+print R[0],V[0]
+print R[6],V[6]
